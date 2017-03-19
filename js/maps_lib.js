@@ -14,21 +14,21 @@
         // Found at https://console.developers.google.com/
         // Important! this key is for demonstration purposes. please register your own.
         this.googleApiKey = options.googleApiKey || "",
-        
+
         // name of the location column in your Fusion Table.
         // NOTE: if your location column name has spaces in it, surround it with single quotes
         // example: locationColumn:     "'my location'",
         this.locationColumn = options.locationColumn || "geometry";
-        
+
         // appends to all address searches if not present
         this.locationScope = options.locationScope || "";
 
         // zoom level when map is loaded (bigger is more zoomed in)
-        this.defaultZoom = options.defaultZoom || 11; 
+        this.defaultZoom = options.defaultZoom || 11;
 
         // center that your map defaults to
         this.map_centroid = new google.maps.LatLng(options.map_center[0], options.map_center[1]);
-        
+
         // marker image for your searched address
         if (typeof options.addrMarkerImage !== 'undefined') {
             if (options.addrMarkerImage != "")
@@ -41,7 +41,7 @@
 
     	this.currentPinpoint = null;
     	$("#result_count").html("");
-        
+
         this.myOptions = {
             zoom: this.defaultZoom,
             center: this.map_centroid,
@@ -49,7 +49,7 @@
         };
         this.geocoder = new google.maps.Geocoder();
         this.map = new google.maps.Map($("#map_canvas")[0], this.myOptions);
-        
+
         // maintains map centerpoint for responsive design
         google.maps.event.addDomListener(self.map, 'idle', function () {
             self.calculateCenter();
@@ -62,15 +62,24 @@
         //reset filters
         $("#search_address").val(self.convertToPlainString($.address.parameter('address')));
         var loadRadius = self.convertToPlainString($.address.parameter('radius'));
-        if (loadRadius != "") 
+        if (loadRadius != "")
             $("#search_radius").val(loadRadius);
-        else 
+        else
             $("#search_radius").val(self.searchRadius);
-        
+
         $(":checkbox").prop("checked", "checked");
         $("#result_box").hide();
 
         //-----custom initializers-----
+        //ranges for our slider
+        var minDate = moment("Jan 1 2010"); // Jan 1st 2010
+        var maxDate = moment(); //now
+
+        //starting values
+        var startDate = moment().subtract('months', 3); //past 3 months
+        var endDate = moment(); //now
+
+        self.initializeDateSlider(minDate, maxDate, startDate, endDate, "days", 7);
         //-----end of custom initializers-----
 
         //run the default search when page loads
@@ -79,6 +88,50 @@
     };
 
     //-----custom functions-----
+    MapsLib.prototype.initializeDateSlider = function(minDate, maxDate, startDate, endDate, stepType, step) {
+    var self = this;
+    var interval = self.sliderInterval(stepType);
+
+    $('#minDate').html(minDate.format('MMM YYYY'));
+    $('#maxDate').html(maxDate.format('MMM YYYY'));
+
+    $('#startDate').html(startDate.format('YYYY/MM/DD'));
+    $('#endDate').html(endDate.format('YYYY/MM/DD'));
+
+    $('#date-range').slider({
+      range: true,
+      step: step,
+      values: [
+          Math.floor((startDate.valueOf() - minDate.valueOf()) / interval),
+          Math.floor((endDate.valueOf() - minDate.valueOf()) / interval)
+      ],
+      max: Math.floor((maxDate.valueOf() - minDate.valueOf()) / interval),
+      slide: function(event, ui) {
+          $('#startDate').html(minDate.clone().add(stepType, ui.values[0]).format('L'));
+          $('#endDate').html(minDate.clone().add(stepType, ui.values[1]).format('L'));
+      },
+      stop: function(event, ui) {
+         self.doSearch();
+        }
+    });
+  }
+
+  MapsLib.prototype.sliderInterval = function(interval) {
+    if (interval == "years")
+      return 365 * 24 * 3600 * 1000;
+    if (interval == "quarters")
+      return 3 * 30.4 * 24 * 3600 * 1000;
+    if (interval == "months") //this is very hacky. months have different day counts, so our point interval is the average - 30.4
+      return 30.4 * 24 * 3600 * 1000;
+    if (interval == "weeks")
+      return 7 * 24 * 3600 * 1000;
+    if (interval == "days")
+      return 24 * 3600 * 1000;
+    if (interval == "hours")
+      return 3600 * 1000;
+    else
+      return 1;
+  }
     //-----end of custom functions-----
 
     MapsLib.prototype.submitSearch = function (whereClause, map) {
@@ -161,8 +214,10 @@
         var address = $("#search_address").val();
         self.searchRadius = $("#search_radius").val();
         self.whereClause = self.locationColumn + " not equal to ''";
-        
+
         //-----custom filters-----
+        self.whereClause += " AND 'Date' >= '" + $('#startDate').html() + "'";
+        self.whereClause += " AND 'Date' <= '" + $('#endDate').html() + "'";
         //-----end of custom filters-----
 
         self.getgeoCondition(address, function (geoCondition) {
@@ -284,7 +339,7 @@
 
     MapsLib.prototype.displaySearchCount = function (json) {
         var self = this;
-        
+
         var numRows = 0;
         if (json["rows"] != null) {
             numRows = json["rows"][0];
@@ -325,13 +380,14 @@
 
     MapsLib.prototype.clearSearch = function () {
         var self = this;
-        if (self.searchrecords && self.searchrecords.getMap) 
+        if (self.searchrecords && self.searchrecords.getMap)
             self.searchrecords.setMap(null);
-        if (self.addrMarker && self.addrMarker.getMap) 
+        if (self.addrMarker && self.addrMarker.getMap)
             self.addrMarker.setMap(null);
-        if (self.searchRadiusCircle && self.searchRadiusCircle.getMap) 
+        if (self.searchRadiusCircle && self.searchRadiusCircle.getMap)
             self.searchRadiusCircle.setMap(null);
     };
+
 
     MapsLib.prototype.findMe = function () {
         var self = this;
