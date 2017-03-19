@@ -36,6 +36,7 @@
     <div class='container-fluid'>
       <div class='row'>
         <div class='col-md-4'>
+          <p>This is a demo of <a href='http://derekeder.com'>Derek Eder's</a> <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template</a> using Google <a href='http://support.google.com/fusiontables/answer/2571232?hl=en&ref_topic=1652595'>Fusion Tables</a>. Use this section to give a little context to your map.</p>
           <div class='well'>
             <h4>
               Address <small>(<a id='find_me' href='#'>find me</a>)</small>
@@ -56,37 +57,23 @@
             </p>
 
             <br />
+            <h4>Custom filters and views</h4>
+            <p>Take a look at the <a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples'>wiki</a> to see how to add your own custom filters and views like:</p>
             <div class='row'>
               <div class='col-md-6'>
-                <h4>
-                  Successful Detainment
-                </h4>
-                <ul class='inputs-list unstyled'>
-                  <li>
-                    <label class='radio inline'>
-                      <input type='radio' name='types' id='rbType1' checked />
-                      <span class='filter-box filter-green'></span>
-                      Yes
-                    </label>
-                  </li>
-                  <li>
-                    <label class='radio inline'>
-                      <input type='radio' name='types' id='rbType2' />
-                      <span class='filter-box filter-red'></span>
-                      No
-                    </label>
-                  </li>
-                  <li>
-                    <label class='radio inline'>
-                      <input type='radio' name='types' id='rbType3' />
-                      <span class='filter-box filter-blue'></span>
-                      Unkown
-                    </label>
-                  </li>
+                <ul>
+                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-checkboxes'>Checkboxes</a></li>
+                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-radiobuttons'>Radio buttons</a></li>
+                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-drop-down-lists'>Drop down lists</a></li>
+                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-textsearches'>Text searches</a></li>
                 </ul>
               </div>
               <div class='col-md-6'>
-
+                <ul>
+                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-sliders'>Sliders</a></li>
+                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-date-sliders'>Date sliders</a></li>
+                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/List-search-results'>Results lists</a></li>
+                </ul>
               </div>
             </div>
             <br />
@@ -121,7 +108,6 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyAR5eeFETe-sMigouZtPABzHpyA02MGyjQ"></script>
     <script type="text/javascript" src="js/maps_lib.js"></script>
-
     <script type='text/javascript'>
       //<![CDATA[
         $(window).resize(function () {
@@ -133,8 +119,8 @@
 
         $(function() {
           var myMap = new MapsLib({
-            fusionTableId:      "1YDG1SByMp8KYDhgKDLauCKC_vAU6t1aKSxLO8sqJ",
-            googleApiKey:       "AIzaSyAVlYrvh7xDuvv6vbY7me9UHgwArCzZ4XI",
+            fusionTableId:      "1m4Ez9xyTGfY2CU6O-UgEcPzlS0rnzLU93e4Faa0",
+            googleApiKey:       "AIzaSyA3FQFrNr5W2OEVmuENqhb2MBB2JabdaOY",
             locationColumn:     "geometry",
             map_center:         [41.8781136, -87.66677856445312],
             locationScope:      "chicago"
@@ -147,7 +133,6 @@
           });
 
           $(':radio').click(function(){
-            console.log('radio');
             myMap.doSearch();
           });
 
