@@ -163,6 +163,14 @@
         self.whereClause = self.locationColumn + " not equal to ''";
         
         //-----custom filters-----
+        // TODO : radio btn
+        var type_column = "'type'";
+		if ( $("#rbType1").is(':checked')) {
+			console.log('radio btn 1');
+			self.whereClause += " AND " + type_column + "=1";
+		}
+
+
         //-----end of custom filters-----
 
         self.getgeoCondition(address, function (geoCondition) {

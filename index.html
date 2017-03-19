@@ -6,15 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content='' name='description' />
     <meta content='' name='author' />
-
-    <!-- Include Required Prerequisites -->
-    <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-    <script type="text/javascript" src="http://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
-    <!-- Include Date Range Picker -->
-    <script type="text/javascript" src="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-
     <!-- Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/custom.css"/>
@@ -67,15 +58,6 @@
             <br />
             <div class='row'>
               <div class='col-md-6'>
-                <h4>Dates</h4>
-
-                <input type="text" name="daterange" value="01/01/2015 - 01/31/2015" />
-
-                <script type="text/javascript">
-
-                      $('input[name="daterange"]').daterangepicker();
-
-                 </script>
                 <h4>
                   Successful Detainment
                 </h4>
@@ -151,8 +133,8 @@
 
         $(function() {
           var myMap = new MapsLib({
-            fusionTableId:      "1VN3Kkg5PtNPhzVuCMf-gdDcX8L2MXeQ37l0UlIW6",
-            googleApiKey:       "AIzaSyA3FQFrNr5W2OEVmuENqhb2MBB2JabdaOY",
+            fusionTableId:      "1YDG1SByMp8KYDhgKDLauCKC_vAU6t1aKSxLO8sqJ",
+            googleApiKey:       "AIzaSyAVlYrvh7xDuvv6vbY7me9UHgwArCzZ4XI",
             locationColumn:     "geometry",
             map_center:         [41.8781136, -87.66677856445312],
             locationScope:      "chicago"
@@ -165,6 +147,7 @@
           });
 
           $(':radio').click(function(){
+            console.log('radio');
             myMap.doSearch();
           });
 
