@@ -36,7 +36,7 @@
     <div class='container-fluid'>
       <div class='row'>
         <div class='col-md-4'>
-          <p>This is a demo of <a href='http://derekeder.com'>Derek Eder's</a> <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template</a> using Google <a href='http://support.google.com/fusiontables/answer/2571232?hl=en&ref_topic=1652595'>Fusion Tables</a>. Use this section to give a little context to your map.</p>
+          <p>Migra Map 2.0 update.</p>
           <div class='well'>
             <h4>
               Address <small>(<a id='find_me' href='#'>find me</a>)</small>
@@ -55,27 +55,6 @@
                 </select>
               </label>
             </p>
-
-            <br />
-            <h4>Custom filters and views</h4>
-            <p>Take a look at the <a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples'>wiki</a> to see how to add your own custom filters and views like:</p>
-            <div class='row'>
-              <div class='col-md-6'>
-                <ul>
-                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-checkboxes'>Checkboxes</a></li>
-                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-radiobuttons'>Radio buttons</a></li>
-                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-drop-down-lists'>Drop down lists</a></li>
-                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-textsearches'>Text searches</a></li>
-                </ul>
-              </div>
-              <div class='col-md-6'>
-                <ul>
-                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-sliders'>Sliders</a></li>
-                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/Filter-examples#wiki-date-sliders'>Date sliders</a></li>
-                  <li><a href='https://github.com/derekeder/FusionTable-Map-Template/wiki/List-search-results'>Results lists</a></li>
-                </ul>
-              </div>
-            </div>
             <br />
             <a class='btn btn-primary' id='search' href='#'>
               <i class='glyphicon glyphicon-search'></i>
@@ -97,7 +76,7 @@
           </noscript>
           <div id='map_canvas'></div>
           <p class='pull-right'>
-            <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template</a> by <a href='http://derekeder.com'>Derek Eder</a>.
+            <a href='https://migramap.latinorebels.com/map/' target="_blank">Migra Map 2.0</a> by <a href='http://latinotechies.com/hack/' target="_blank">Latino Techies</a>.
         </p>
         </div>
       </div>
@@ -113,10 +92,10 @@
         $(window).resize(function () {
           var h = $(window).height(),
             offsetTop = 105; // Calculate the top offset
-        
+
           $('#map_canvas').css('height', (h - offsetTop));
         }).resize();
-        
+
         $(function() {
           var myMap = new MapsLib({
             fusionTableId:      "1m4Ez9xyTGfY2CU6O-UgEcPzlS0rnzLU93e4Faa0",
@@ -127,7 +106,7 @@
           });
 
           var autocomplete = new google.maps.places.Autocomplete(document.getElementById('search_address'));
-      
+
           $(':checkbox').click(function(){
             myMap.doSearch();
           });
@@ -135,25 +114,25 @@
           $(':radio').click(function(){
             myMap.doSearch();
           });
-          
+
           $('#search_radius').change(function(){
             myMap.doSearch();
           });
-          
+
           $('#search').click(function(){
             myMap.doSearch();
           });
-          
+
           $('#find_me').click(function(){
-            myMap.findMe(); 
+            myMap.findMe();
             return false;
           });
-          
+
           $('#reset').click(function(){
-            myMap.reset(); 
+            myMap.reset();
             return false;
           });
-          
+
           $(":text").keydown(function(e){
               var key =  e.keyCode ? e.keyCode : e.which;
               if(key === 13) {
