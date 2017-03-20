@@ -24,7 +24,7 @@
         this.locationScope = options.locationScope || "";
 
         // zoom level when map is loaded (bigger is more zoomed in)
-        this.defaultZoom = options.defaultZoom || 11;
+        this.defaultZoom = options.defaultZoom || 4;
 
         // center that your map defaults to
         this.map_centroid = new google.maps.LatLng(options.map_center[0], options.map_center[1]);
@@ -71,6 +71,15 @@
         $("#result_box").hide();
 
         //-----custom initializers-----
+        //ranges for our slider
+        var minDate = moment("Jan 1 2010"); // Jan 1st 2010
+        var maxDate = moment(); //now
+
+        //starting values
+        var startDate = moment().subtract('months', 3); //past 3 months
+        var endDate = moment(); //now
+
+        self.initializeDateSlider(minDate, maxDate, startDate, endDate, "days", 7);
         //-----end of custom initializers-----
 
         //run the default search when page loads
@@ -79,6 +88,50 @@
     };
 
     //-----custom functions-----
+    MapsLib.prototype.initializeDateSlider = function(minDate, maxDate, startDate, endDate, stepType, step) {
+    var self = this;
+    var interval = self.sliderInterval(stepType);
+
+    $('#minDate').html(minDate.format('MMM YYYY'));
+    $('#maxDate').html(maxDate.format('MMM YYYY'));
+
+    $('#startDate').html(startDate.format('YYYY/MM/DD'));
+    $('#endDate').html(endDate.format('YYYY/MM/DD'));
+
+    $('#date-range').slider({
+      range: true,
+      step: step,
+      values: [
+          Math.floor((startDate.valueOf() - minDate.valueOf()) / interval),
+          Math.floor((endDate.valueOf() - minDate.valueOf()) / interval)
+      ],
+      max: Math.floor((maxDate.valueOf() - minDate.valueOf()) / interval),
+      slide: function(event, ui) {
+          $('#startDate').html(minDate.clone().add(stepType, ui.values[0]).format('L'));
+          $('#endDate').html(minDate.clone().add(stepType, ui.values[1]).format('L'));
+      },
+      stop: function(event, ui) {
+         self.doSearch();
+        }
+    });
+  }
+
+  MapsLib.prototype.sliderInterval = function(interval) {
+    if (interval == "years")
+      return 365 * 24 * 3600 * 1000;
+    if (interval == "quarters")
+      return 3 * 30.4 * 24 * 3600 * 1000;
+    if (interval == "months") //this is very hacky. months have different day counts, so our point interval is the average - 30.4
+      return 30.4 * 24 * 3600 * 1000;
+    if (interval == "weeks")
+      return 7 * 24 * 3600 * 1000;
+    if (interval == "days")
+      return 24 * 3600 * 1000;
+    if (interval == "hours")
+      return 3600 * 1000;
+    else
+      return 1;
+  }
     //-----end of custom functions-----
 
     MapsLib.prototype.submitSearch = function (whereClause, map) {
@@ -112,6 +165,7 @@
                 'address': address
             }, function (results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
+                    console.log('getgeoCondition>>>');
                     self.currentPinpoint = results[0].geometry.location;
                     var map = self.map;
 
@@ -156,20 +210,37 @@
     };
 
     MapsLib.prototype.doSearch = function () {
+        console.log('doSearch>>>');
+        console.log('doSearch whereClause is >>> ' + self);
         var self = this;
         self.clearSearch();
         var address = $("#search_address").val();
         self.searchRadius = $("#search_radius").val();
-        self.whereClause = self.locationColumn + " not equal to ''";
-
+		self.whereClause = ''; // init
         //-----custom filters-----
+		self.whereClause += "'Date' >= '" + $('#startDate').html() + "'";
+		self.whereClause += " AND 'Date' <= '" + $('#endDate').html() + "'";
+
+        // TODO : use 1, 0, -1
+	    if ( $("#rbType1").is(':checked')) {
+	        console.log('rdbtn 1');
+	        self.whereClause += " AND Detentions='Yes'"
+	    }
+	    if ( $("#rbType2").is(':checked')) {
+	        console.log('rdbtn 2');
+	        self.whereClause += " AND Detentions='No'"
+	    }
+	    if ( $("#rbType3").is(':checked')) {
+	        console.log('rdbtn 3');
+	        self.whereClause += " AND Detentions='Unknown/unsure'"
+        }
         //-----end of custom filters-----
 
         self.getgeoCondition(address, function (geoCondition) {
             self.whereClause += geoCondition;
             self.submitSearch(self.whereClause, self.map);
         });
-
+		console.log('posting>>>');
     };
 
     MapsLib.prototype.reset = function () {
@@ -229,19 +300,19 @@
         queryStr.push("SELECT " + query_opts.select);
         queryStr.push(" FROM " + self.fusionTableId);
         // where, group and order clauses are optional
-        if (query_opts.where && query_opts.where != "") {
+        if (query_opts.where && query_opts.where !== 'undefined') {
             queryStr.push(" WHERE " + query_opts.where);
         }
-        if (query_opts.groupBy && query_opts.groupBy != "") {
+        if (query_opts.groupBy && query_opts.groupBy !== 'undefined') {
             queryStr.push(" GROUP BY " + query_opts.groupBy);
         }
-        if (query_opts.orderBy && query_opts.orderBy != "") {
+        if (query_opts.orderBy && query_opts.orderBy !== 'undefined') {
             queryStr.push(" ORDER BY " + query_opts.orderBy);
         }
-        if (query_opts.offset && query_opts.offset !== "") {
+        if (query_opts.offset && query_opts.offset !== 'undefined') {
             queryStr.push(" OFFSET " + query_opts.offset);
         }
-        if (query_opts.limit && query_opts.limit !== "") {
+        if (query_opts.limit && query_opts.limit !== 'undefined') {
             queryStr.push(" LIMIT " + query_opts.limit);
         }
         var theurl = {
@@ -258,6 +329,7 @@
         }).fail(function(response) {
             self.handleError(response);
         });
+        console.log('queryStr>>> ' + queryStr);
     };
 
     MapsLib.prototype.handleError = function (json) {
@@ -332,6 +404,7 @@
         if (self.searchRadiusCircle && self.searchRadiusCircle.getMap)
             self.searchRadiusCircle.setMap(null);
     };
+
 
     MapsLib.prototype.findMe = function () {
         var self = this;
