@@ -165,7 +165,6 @@
                 'address': address
             }, function (results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
-                    console.log('getgeoCondition>>>');
                     self.currentPinpoint = results[0].geometry.location;
                     var map = self.map;
 
@@ -210,8 +209,6 @@
     };
 
     MapsLib.prototype.doSearch = function () {
-        console.log('doSearch>>>');
-        console.log('doSearch whereClause is >>> ' + self);
         var self = this;
         self.clearSearch();
         var address = $("#search_address").val();
@@ -223,15 +220,12 @@
 
         // TODO : use 1, 0, -1
 	    if ( $("#rbType1").is(':checked')) {
-	        console.log('rdbtn 1');
 	        self.whereClause += " AND Detentions='Yes'"
 	    }
 	    if ( $("#rbType2").is(':checked')) {
-	        console.log('rdbtn 2');
 	        self.whereClause += " AND Detentions='No'"
 	    }
 	    if ( $("#rbType3").is(':checked')) {
-	        console.log('rdbtn 3');
 	        self.whereClause += " AND Detentions='Unknown/unsure'"
         }
         //-----end of custom filters-----
@@ -240,7 +234,6 @@
             self.whereClause += geoCondition;
             self.submitSearch(self.whereClause, self.map);
         });
-		console.log('posting>>>');
     };
 
     MapsLib.prototype.reset = function () {
@@ -329,7 +322,6 @@
         }).fail(function(response) {
             self.handleError(response);
         });
-        console.log('queryStr>>> ' + queryStr);
     };
 
     MapsLib.prototype.handleError = function (json) {
