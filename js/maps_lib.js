@@ -213,18 +213,27 @@
         self.clearSearch();
         var address = $("#search_address").val();
         self.searchRadius = $("#search_radius").val();
-        self.whereClause = self.locationColumn + " not equal to ''";
-
+		self.whereClause = ''; // init
         //-----custom filters-----
-        self.whereClause += " AND 'Date' >= '" + $('#startDate').html() + "'";
-        self.whereClause += " AND 'Date' <= '" + $('#endDate').html() + "'";
+		self.whereClause += "'Date' >= '" + $('#startDate').html() + "'";
+		self.whereClause += " AND 'Date' <= '" + $('#endDate').html() + "'";
+
+        // TODO : use 1, 0, -1
+	    if ( $("#rbType1").is(':checked')) {
+	        self.whereClause += " AND Detentions='Yes'"
+	    }
+	    if ( $("#rbType2").is(':checked')) {
+	        self.whereClause += " AND Detentions='No'"
+	    }
+	    if ( $("#rbType3").is(':checked')) {
+	        self.whereClause += " AND Detentions='Unknown/unsure'"
+        }
         //-----end of custom filters-----
 
         self.getgeoCondition(address, function (geoCondition) {
             self.whereClause += geoCondition;
             self.submitSearch(self.whereClause, self.map);
         });
-
     };
 
     MapsLib.prototype.reset = function () {
@@ -284,19 +293,19 @@
         queryStr.push("SELECT " + query_opts.select);
         queryStr.push(" FROM " + self.fusionTableId);
         // where, group and order clauses are optional
-        if (query_opts.where && query_opts.where != "") {
+        if (query_opts.where && query_opts.where !== 'undefined') {
             queryStr.push(" WHERE " + query_opts.where);
         }
-        if (query_opts.groupBy && query_opts.groupBy != "") {
+        if (query_opts.groupBy && query_opts.groupBy !== 'undefined') {
             queryStr.push(" GROUP BY " + query_opts.groupBy);
         }
-        if (query_opts.orderBy && query_opts.orderBy != "") {
+        if (query_opts.orderBy && query_opts.orderBy !== 'undefined') {
             queryStr.push(" ORDER BY " + query_opts.orderBy);
         }
-        if (query_opts.offset && query_opts.offset !== "") {
+        if (query_opts.offset && query_opts.offset !== 'undefined') {
             queryStr.push(" OFFSET " + query_opts.offset);
         }
-        if (query_opts.limit && query_opts.limit !== "") {
+        if (query_opts.limit && query_opts.limit !== 'undefined') {
             queryStr.push(" LIMIT " + query_opts.limit);
         }
         var theurl = {
