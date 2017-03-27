@@ -35,3 +35,22 @@ canvas {-ms-touch-action: double-tap-zoom;}
 .iframe #map_canvas { height: 500px; }
 .iframe .well { margin-bottom: 5px; }
 .iframe .alert { margin-top: 5px; }
+
+.navbar {
+    min-height: 50px;
+    background-color: #fff;
+}
+
+.navbar-brand {
+    padding: 0 30px 0 10px;
+    margin: 0;
+}
+
+.navbar-default ul.navbar-nav li a:hover {
+    text-decoration: underline;
+}
+
+.latinorebels {
+    padding: 0 10px;
+    margin: 0;
+}
