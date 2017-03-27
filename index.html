@@ -14,6 +14,24 @@
     <!--[if lt IE 9]>
       <script type="text/javascript" src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <!-- Include Required Prerequisites -->
+    <!--<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>-->
+    <!--<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />-->
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/jquery.address.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyAVlYrvh7xDuvv6vbY7me9UHgwArCzZ4XI"></script>
+    <script type="text/javascript" src="js/maps_lib.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+
   </head>
   <body>
     <div class='navbar navbar-default navbar-static-top'>
@@ -61,19 +79,34 @@
                 </select>
               </label>
             </p>
-            <br />
+            <!-- date range -->
             <h4>
               Date
-              <small>
-              <span id="startDate"></span>
-              -
-              <span id="endDate"></span>
-              </small>
             </h4>
-            <div id="date-range"></div>
-            <p class='pull-left' id='minDate'></p>
-            <p class='pull-right' id='maxDate'></p>
-            <br />
+            <input class='form-control' id='daterange' type="text" name="daterange" value="" style="width: 100%;" data-startdate data-enddate/>
+            <script type="text/javascript">
+            // TODO : call doSearch()
+            /*
+              var startDateInit = moment().subtract(182, 'days').calendar();
+              var endDateInit = moment().format('MM/DD/YYYY');
+              // this works $('input[name="daterange"]').data()
+
+              $('input[name="daterange"]').daterangepicker({ startDate: startDateInit, endDate: endDateInit });
+              $('input[name="daterange"]').data('startdate', startDateInit);
+              $('input[name="daterange"]').data('enddate', endDateInit);
+
+             $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+                  startDate = moment(picker.startDate._d).format('MM/DD/YYYY');
+                  endDate = moment(picker.endDate._d).format('MM/DD/YYYY');
+                  console.log(startDate);
+                  console.log(endDate);
+                  $('input[name="daterange"]').data('startdate', startDate);
+                  $('input[name="daterange"]').data('enddate', endDate);
+              });
+*/
+            </script>
+            <!-- end of date range -->
+
             <!--radio-->
             <h4>
               Successful Detainment
@@ -128,13 +161,7 @@
       </div>
     </div>
 
-    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <script src="js/moment.min.js"></script>
-    <script type="text/javascript" src="js/jquery.address.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyAVlYrvh7xDuvv6vbY7me9UHgwArCzZ4XI"></script>
-    <script type="text/javascript" src="js/maps_lib.js"></script>
+
     <script type='text/javascript'>
       //<![CDATA[
         $(window).resize(function () {
@@ -153,6 +180,27 @@
           });
 
           var autocomplete = new google.maps.places.Autocomplete(document.getElementById('search_address'));
+
+          /* datarangepicker */
+          var startDateInit = moment().subtract(365, 'days').calendar();
+          var endDateInit = moment().format('MM/DD/YYYY');
+          // this works $('input[name="daterange"]').data()
+
+          $('input[name="daterange"]').daterangepicker({ startDate: startDateInit, endDate: endDateInit });
+          $('input[name="daterange"]').data('startdate', startDateInit);
+          $('input[name="daterange"]').data('enddate', endDateInit);
+          $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+            startDate = moment(picker.startDate._d).format('MM/DD/YYYY');
+            endDate = moment(picker.endDate._d).format('MM/DD/YYYY');
+            console.log(startDate);
+            console.log(endDate);
+            $('input[name="daterange"]').data('startdate', startDate);
+            $('input[name="daterange"]').data('enddate', endDate);
+            // call search when apply is clicked
+            myMap.doSearch(startDate, endDate);
+           });
+
+          /* end of datarangepicker */
 
           $(':checkbox').click(function(){
             myMap.doSearch();
