@@ -71,15 +71,8 @@
         $("#result_box").hide();
 
         //-----custom initializers-----
-//        //ranges for our slider
-//        var minDate = moment("Jan 1 2010"); // Jan 1st 2010
-//        var maxDate = moment(); //now
-//
-//        //starting values
-//        var startDate = moment().subtract('months', 3); //past 3 months
-//        var endDate = moment(); //now
-//
-//        self.initializeDateSlider(minDate, maxDate, startDate, endDate, "days", 7);
+        // TODO : set dates here
+
         //-----end of custom initializers-----
 
         //run the default search when page loads
@@ -88,50 +81,6 @@
     };
 
     //-----custom functions-----
-//    MapsLib.prototype.initializeDateSlider = function(minDate, maxDate, startDate, endDate, stepType, step) {
-//    var self = this;
-//    var interval = self.sliderInterval(stepType);
-//
-//    $('#minDate').html(minDate.format('MMM YYYY'));
-//    $('#maxDate').html(maxDate.format('MMM YYYY'));
-//
-//    $('#startDate').html(startDate.format('YYYY/MM/DD'));
-//    $('#endDate').html(endDate.format('YYYY/MM/DD'));
-//
-//    $('#date-range').slider({
-//      range: true,
-//      step: step,
-//      values: [
-//          Math.floor((startDate.valueOf() - minDate.valueOf()) / interval),
-//          Math.floor((endDate.valueOf() - minDate.valueOf()) / interval)
-//      ],
-//      max: Math.floor((maxDate.valueOf() - minDate.valueOf()) / interval),
-//      slide: function(event, ui) {
-//          $('#startDate').html(minDate.clone().add(stepType, ui.values[0]).format('L'));
-//          $('#endDate').html(minDate.clone().add(stepType, ui.values[1]).format('L'));
-//      },
-//      stop: function(event, ui) {
-//         self.doSearch();
-//        }
-//    });
-//  }
-
-  MapsLib.prototype.sliderInterval = function(interval) {
-    if (interval == "years")
-      return 365 * 24 * 3600 * 1000;
-    if (interval == "quarters")
-      return 3 * 30.4 * 24 * 3600 * 1000;
-    if (interval == "months") //this is very hacky. months have different day counts, so our point interval is the average - 30.4
-      return 30.4 * 24 * 3600 * 1000;
-    if (interval == "weeks")
-      return 7 * 24 * 3600 * 1000;
-    if (interval == "days")
-      return 24 * 3600 * 1000;
-    if (interval == "hours")
-      return 3600 * 1000;
-    else
-      return 1;
-  }
     //-----end of custom functions-----
 
     MapsLib.prototype.submitSearch = function (whereClause, map) {
@@ -211,36 +160,31 @@
     };
 
     MapsLib.prototype.doSearch = function () {
-        var self = this;
-        self.clearSearch();
-        var address = $("#search_address").val();
-        self.searchRadius = $("#search_radius").val();
-		self.whereClause = ''; // init
-        //-----custom filters-----
+				var self = this;
+				self.clearSearch();
+				var address = $("#search_address").val();
+				self.searchRadius = $("#search_radius").val();
+				self.whereClause = ''; // init
+				//-----custom filters-----
 
-        // if startdate and enddate are not exposed, let startdate be one year ago and enddate today
-        var $dateRangePicker = $('input[name="daterange"]');
-        var startdate = $dateRangePicker.data('startdate')
-							? $dateRangePicker.data('startdate')
-                            : moment().subtract(365, 'days').calendar();;
-		var enddate = $dateRangePicker.data('enddate')
-							? $dateRangePicker.data('enddate')
-							: moment().format('MM/DD/YYYY');
+				// if startdate and enddate are not exposed, let startdate be one year ago and enddate today
+				var $dateRangePicker = $('input[name="daterange"]');
+				var startdate = $dateRangePicker.data('startdate');
+				var enddate = $dateRangePicker.data('enddate');
 
-		self.whereClause += "'Date' >= '" + startdate + "'";
-		self.whereClause += " AND 'Date' <= '" + enddate + "'";
+				self.whereClause += "'Date' >= '" + startdate + "'";
+				self.whereClause += " AND 'Date' <= '" + enddate + "'";
 
-
-        // TODO : use 1, 0, -1
-	    if ( $("#rbType1").is(':checked')) {
-	        self.whereClause += " AND Detentions='Yes'"
-	    }
-	    if ( $("#rbType2").is(':checked')) {
-	        self.whereClause += " AND Detentions='No'"
-	    }
-	    if ( $("#rbType3").is(':checked')) {
-	        self.whereClause += " AND Detentions='Unknown/unsure'"
-        }
+				// TODO : use 1, 0, -1
+				if ( $("#rbType1").is(':checked')) {
+						self.whereClause += " AND Detentions='Yes'"
+				}
+				if ( $("#rbType2").is(':checked')) {
+						self.whereClause += " AND Detentions='No'"
+				}
+				if ( $("#rbType3").is(':checked')) {
+						self.whereClause += " AND Detentions='Unknown/unsure'"
+				}
         //-----end of custom filters-----
 
         self.getgeoCondition(address, function (geoCondition) {

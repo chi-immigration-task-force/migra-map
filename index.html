@@ -9,9 +9,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/custom.css"/>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <link rel="stylesheet" href="css/custom.css"/>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script type="text/javascript" src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -74,14 +73,10 @@
               </label>
             </p>
             <br />
-            <!-- date range -->
             <h4>
               Date
             </h4>
             <input class='form-control' id='daterange' type="text" name="daterange" value="" style="width: 100%;" data-startdate data-enddate/>
-            <!-- end of date range -->
-
-            <!--radio-->
             <h4>
               Successful Detainment
             </h4>
@@ -108,7 +103,6 @@
                 </label>
               </li>
             </ul>
-            <!--end of radio-->
             <a class='btn btn-primary' id='search' href='#'>
               <i class='glyphicon glyphicon-search'></i>
               Search
@@ -172,6 +166,15 @@
         }).resize();
 
         $(function() {
+
+          var $dateRangePicker = $('input[name="daterange"]');
+          var startDateInit = moment().subtract(365, 'days').calendar();
+          var endDateInit = moment().format('MM/DD/YYYY');
+          // init
+          $dateRangePicker.daterangepicker({ startDate: startDateInit, endDate: endDateInit });
+          $dateRangePicker.data('startdate', startDateInit);
+          $dateRangePicker.data('enddate', endDateInit);
+
           var myMap = new MapsLib({
             fusionTableId:      "1YDG1SByMp8KYDhgKDLauCKC_vAU6t1aKSxLO8sqJ",
             googleApiKey:       "AIzaSyAVlYrvh7xDuvv6vbY7me9UHgwArCzZ4XI",
@@ -181,28 +184,18 @@
 
           var autocomplete = new google.maps.places.Autocomplete(document.getElementById('search_address'));
 
-          /* datarangepicker */
-          var $dateRangePicker = $('input[name="daterange"]');
-          var startDateInit = moment().subtract(365, 'days').calendar();
-          var endDateInit = moment().format('MM/DD/YYYY');
-          // this works $('input[name="daterange"]').data()
+          $dateRangePicker.daterangepicker()
+            .on('apply.daterangepicker', function(ev, picker) {
+              startDate = moment(picker.startDate._d).format('MM/DD/YYYY');
+              endDate = moment(picker.endDate._d).format('MM/DD/YYYY');
 
-          $dateRangePicker.daterangepicker({ startDate: startDateInit, endDate: endDateInit });
-          $dateRangePicker.data('startdate', startDateInit);
-          $dateRangePicker.data('enddate', endDateInit);
-          $dateRangePicker.on('apply.daterangepicker', function(ev, picker) {
-            startDate = moment(picker.startDate._d).format('MM/DD/YYYY');
-            endDate = moment(picker.endDate._d).format('MM/DD/YYYY');
+              $dateRangePicker.data('startdate', startDate);
+              $dateRangePicker.data('enddate', endDate);
 
-            $dateRangePicker.data('startdate', startDate);
-            $dateRangePicker.data('enddate', endDate);
-
-            // call search when apply is clicked
-            myMap.doSearch();
-
+              // call search when apply is clicked
+              myMap.doSearch();
            });
 
-          /* end of datarangepicker */
 
           $(':checkbox').click(function(){
             myMap.doSearch();
