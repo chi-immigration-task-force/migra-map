@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang='en'>
   <head>
-    <title>MigraMap 2.0</title>
+    <title>MigraMap 2.0 | Map</title>
     <meta charset='utf-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content='' name='description' />
@@ -26,30 +26,25 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class='navbar-brand' href='index.html'>MigraMap 2.0</a>
+          <a class='navbar-brand' href='index.html'><img class="img" src="images/MigraMap.png" alt="MigraMap 2.0" title="MigraMap 2.0"></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Map</a></li>  <!--TBD: link to /en/index.html-->
-            <li><a href="about.html">About</a></li>  <!--TBD: link to /en/about.html-->
-            <li><a href="submit.html">Report a Raid</a></li>  <!--TBD: link to /en/submit.html-->
-            <li class='dropdown'>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Supporters <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="http://www.latinorebels.com/">Latino Rebels</a></li>
-                    <li><a href="http://www.gozamos.com/">Gozamos</a></li>
-                    <li><a href="http://www.chihacknight.org/">Chi Hack Night</a></li>
-                    <li><a href="http://mijente.net/">Mijente</a></li>
-                    <!--TBD: others-->
-                </ul>
-            </li>
+            <li class="active"><a href="index.html" title="Map">Map</a></li>  <!--TBD: link to /en/index.html-->
+            <li><a href="about.html" title="About MigraMap">About</a></li>  <!--TBD: link to /en/about.html-->
+            <li><a href="raid.html" title="Report a Raid">Report a Raid</a></li>  <!--TBD: link to /en/submit.html-->
           </ul>
+          <div class="nav navbar-nav">
+              <a href='http://www.latinorebels.com/' target="_blank" title="Latino Rebels home">
+                  <img class="img latinorebels" src="images/Latino-Rebels.png" alt="Latino Rebels home">
+              </a>
+          </div>
           <ul class="nav navbar-nav navbar-right">
             <li class='dropdown'>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">English <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Choose a Language">English <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li class="active"><a href="#">English</a></li>   <!--TBD: link to /en/index.html-->
-                    <li><a href="#">Espa&ntilde;ol</a></li>  <!--TBD: link to /sp/index.html-->
+                    <li class="active"><a href="#" title="English">English</a></li>   <!--TBD: link to /en/index.html-->
+                    <li><a href="#" title="Espa&ntilde;ol">Espa&ntilde;ol</a></li>  <!--TBD: link to /sp/index.html-->
                     <!--TBD: other languages? (will need translators/verifiers)-->
                 </ul>
             </li>
@@ -60,7 +55,6 @@
     <div class='container-fluid'>
       <div class='row'>
         <div class='col-sm-4 col-xs-12'>
-          <p>Migra Map 2.0 update.</p>
           <div class='well'>
             <h4>
               Address <small>(<a id='find_me' href='#'>find me</a>)</small>
@@ -134,9 +128,9 @@
             </div>
           </noscript>
           <div id='map_canvas'></div>
-          <p class='pull-right'>
-            <a href='https://migramap.latinorebels.com/map/' target="_blank">Migra Map 2.0</a> by <a href='http://latinotechies.com/hack/' target="_blank">Latino Techies</a>.
-        </p>
+          <!--p class='pull-right'>
+            <a href='https://migramap.latinorebels.com/map/' target="_blank">Migra Map 2.0</a> by <a href='http://latinotechies.com/hack/' target="_blank">Latino Techies</a>
+        </p--><!-- Latino Techies doesn't want to take credit for this-->
         </div>
       </div>
     </div>
@@ -182,7 +176,6 @@
             fusionTableId:      "1YDG1SByMp8KYDhgKDLauCKC_vAU6t1aKSxLO8sqJ",
             googleApiKey:       "AIzaSyAVlYrvh7xDuvv6vbY7me9UHgwArCzZ4XI",
             map_center:         [39.833333, -98.583333],
-            //locationColumn:    "location"
             locationScope:      "usa"
           });
 
