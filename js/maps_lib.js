@@ -172,8 +172,8 @@
 				var startdate = $dateRangePicker.data('startdate');
 				var enddate = $dateRangePicker.data('enddate');
 
-				self.whereClause += "'Date' >= '" + startdate + "'";
-				self.whereClause += " AND 'Date' <= '" + enddate + "'";
+				self.whereClause += "'Raid Date' >= '" + startdate + "'";
+				self.whereClause += " AND 'Raid Date' <= '" + enddate + "'";
 
 				// TODO : use 1, 0, -1
 				if ( $("#rbType1").is(':checked')) {
