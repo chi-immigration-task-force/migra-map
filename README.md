@@ -2,7 +2,7 @@
 This is the repository for the new version of MigraMap, based off of Derek Eder's Searchable Map Template.
 MigraMap was originally launched by Latino Rebels, and this project will update that map with additional features.
 
-[![MigraMap Draft screenshot](https://github.com/chi-immigration-task-force/migra-map/blob/master/migra_map_simple.png)](http://derekeder.github.io/FusionTable-Map-Template/)
+[![MigraMap Draft](https://github.com/chi-immigration-task-force/migra-map/blob/master/migra_map_advanced.png)](http://derekeder.github.io/FusionTable-Map-Template/)
 
 [See the current map &raquo;](https://migramap.latinorebels.com/map)
 
