@@ -15,6 +15,19 @@
     <!--[if lt IE 9]>
       <script type="text/javascript" src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+    <script src="js/jquery-i18n/CLDRPluralRuleParser.js"></script>
+  	<!-- Source -->
+  	<script src="js/jquery-i18n/jquery.i18n.js"></script>
+  	<script src="js/jquery-i18n/jquery.i18n.messagestore.js"></script>
+  	<script src="js/jquery-i18n/jquery.i18n.fallbacks.js"></script>
+  	<script src="js/jquery-i18n/jquery.i18n.parser.js"></script>
+  	<script src="js/jquery-i18n/jquery.i18n.emitter.js"></script>
+  	<script src="js/jquery-i18n/jquery.i18n.language.js"></script>
+
   </head>
   <body>
     <div class='navbar navbar-default navbar-static-top'>
@@ -26,6 +39,14 @@
             <span class="icon-bar"></span>
           </button>
           <a class='navbar-brand' href='index.html'><img class="img" src="images/MigraMap.png" alt="MigraMap 2.0" title="MigraMap 2.0"></a>
+        </div>
+        <div class="lead">
+          <label for='locale' id="locale-label">Choose Your language:</label>
+          <select class="language span3" id="locale">
+            <option value="en" selected>English</option>
+            <option value="es">Spanish</option>
+          </select>
+          <div class="result lead alert alert-success"><!-- The message will be filled here automatically. --></div>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -265,6 +286,21 @@
           });
         });
       //]]>
+    </script>
+    <script type="text/javascript">
+      $("#locale").change(function(){
+        // alert("changed lan");
+        var i18n = $.i18n();
+        language = $( '#locale option:selected' ).val();
+
+      	i18n.locale = language;
+      	i18n.load( 'i18n/migra-' + i18n.locale + '.json', i18n.locale ).done(
+      		function() {
+      			var selectLanguage = $.i18n( migra-map-select-lang );
+      			$( '#locale-label' ).text( selectLanguage ).prop( 'title', selectLanguage.toLocaleString() );
+      		} );
+
+      });
     </script>
   </body>
 </html>

@@ -115,7 +115,7 @@
                 'address': address
             }, function (results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
-                    self.currentPinpoint = results[0].geometry.location;
+                    //self.currentPinpoint = results[0].geometry.location;
                     var map = self.map;
 
                     $.address.parameter('address', encodeURIComponent(address));
