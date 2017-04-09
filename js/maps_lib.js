@@ -174,7 +174,8 @@
 
 				self.whereClause += "'Date' >= '" + startdate + "'";
 				self.whereClause += " AND 'Date' <= '" + enddate + "'";
-
+				// TODO : find column for place of raid
+				console.log('doSearch()>>>')
 				// TODO : use 1, 0, -1
 				if ( $("#rbType1").is(':checked')) {
 						self.whereClause += " AND Detentions='Yes'"
@@ -184,6 +185,15 @@
 				}
 				if ( $("#rbType3").is(':checked')) {
 						self.whereClause += " AND Detentions='Unknown/unsure'"
+				}
+				if ( $("#rbType4").is(':checked')) {
+						self.whereClause += " AND Type='Home'"
+				}
+				if ( $("#rbType5").is(':checked')) {
+						self.whereClause += " AND Type='Workplace'"
+				}
+				if ( $("#rbType6").is(':checked')) {
+						self.whereClause += " AND Type='Public place'"
 				}
         //-----end of custom filters-----
 
