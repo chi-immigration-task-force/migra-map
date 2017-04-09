@@ -1,0 +1,20 @@
+
+	"@metadata": {
+		"authors": [
+			"Alice",
+			"David",
+			"Santhosh"
+		],
+		"last-updated": "2012-09-21",
+		"locale": "en",
+		"message-documentation": "qqq",
+		"AnotherMetadata": "AnotherMedatadataValue"
+	},
+	"migra-map-title": "Migra Map",
+	"migra-map-sub-title": "Redadas del Ice con with jquery.i18n",
+	"migra-map-header-introduction": "Introduccion",
+	"migra-map-about": "Acerca de esta aplicacion",
+	"migra-map-footer": "Pie de Pagina",
+	"migra-map-select-lang": "Selecciona tu idioma"
+
+}
