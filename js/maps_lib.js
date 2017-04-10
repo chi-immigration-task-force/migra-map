@@ -354,34 +354,6 @@
             self.searchRadiusCircle.setMap(null);
     };
 
-
-    MapsLib.prototype.findMe = function () {
-        var self = this;
-        var foundLocation;
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-                var accuracy = position.coords.accuracy;
-                var coords = new google.maps.LatLng(latitude, longitude);
-                self.map.panTo(coords);
-                self.addrFromLatLng(coords);
-                self.map.setZoom(14);
-                jQuery('#map_canvas').append('<div id="myposition"><i class="fontello-target"></i></div>');
-                setTimeout(function () {
-                    jQuery('#myposition').remove();
-                }, 3000);
-            }, function error(msg) {
-                alert('Please enable your GPS position future.');
-            }, {
-                //maximumAge: 600000,
-                //timeout: 5000,
-                enableHighAccuracy: true
-            });
-        } else {
-            alert("Geolocation API is not supported in your browser.");
-        }
-    };
     if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
         module.exports = MapsLib;
     } else if (typeof define === 'function' && define.amd) {
