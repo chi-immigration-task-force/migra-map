@@ -209,7 +209,8 @@
             myMap.doSearch();
           });
 
-          $('#search').click(function(){
+          $('#search').click(function(e){
+            e.preventDefault();
             myMap.doSearch();
           });
 
