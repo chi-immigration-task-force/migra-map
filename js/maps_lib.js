@@ -18,7 +18,7 @@
         // name of the location column in your Fusion Table.
         // NOTE: if your location column name has spaces in it, surround it with single quotes
         // example: locationColumn:     "'my location'",
-        //this.locationColumn = options.locationColumn || "location";
+        this.locationColumn = options.locationColumn || "Location";
 
         // appends to all address searches if not present
         this.locationScope = options.locationScope || "";
@@ -172,10 +172,9 @@
 				var startdate = $dateRangePicker.data('startdate');
 				var enddate = $dateRangePicker.data('enddate');
 
-				self.whereClause += "'Date' >= '" + startdate + "'";
-				self.whereClause += " AND 'Date' <= '" + enddate + "'";
-				// TODO : find column for place of raid
-				console.log('doSearch()>>>')
+				self.whereClause += "'Raid Date' >= '" + startdate + "'";
+				self.whereClause += " AND 'Raid Date' <= '" + enddate + "'";
+
 				// TODO : use 1, 0, -1
 				if ( $("#rbType1").is(':checked')) {
 						self.whereClause += " AND Detentions='Yes'"
@@ -187,13 +186,13 @@
 						self.whereClause += " AND Detentions='Unknown/unsure'"
 				}
 				if ( $("#rbType4").is(':checked')) {
-						self.whereClause += " AND Type='Home'"
+						self.whereClause += " AND 'Location Type'='Home'"
 				}
 				if ( $("#rbType5").is(':checked')) {
-						self.whereClause += " AND Type='Workplace'"
+						self.whereClause += " AND 'Location Type'='Workplace'"
 				}
 				if ( $("#rbType6").is(':checked')) {
-						self.whereClause += " AND Type='Public place'"
+						self.whereClause += " AND 'Location Type'='Public place'"
 				}
         //-----end of custom filters-----
 

@@ -110,21 +110,21 @@
               <li>
                 <label class='radio inline'>
                   <input type='radio' name='types' id='rbType4' />
-                  <span class='filter-box'></span>
+                  <span></span>
                   Home
                 </label>
               </li>
               <li>
                 <label class='radio inline'>
                   <input type='radio' name='types' id='rbType5' />
-                  <span class='filter-box'></span>
+                  <span></span>
                   Workplace
                 </label>
               </li>
               <li>
                 <label class='radio inline'>
                   <input type='radio' name='types' id='rbType6' />
-                  <span class='filter-box'></span>
+                  <span></span>
                   Public Place
                 </label>
               </li>
@@ -202,9 +202,10 @@
           $dateRangePicker.data('enddate', endDateInit);
 
           var myMap = new MapsLib({
-            fusionTableId:      "1YDG1SByMp8KYDhgKDLauCKC_vAU6t1aKSxLO8sqJ",
+            fusionTableId:      "1GfBrae7z2ewRcDbVmB1UPf9LpiO7ZoyppTYYDvBu",
             googleApiKey:       "AIzaSyAVlYrvh7xDuvv6vbY7me9UHgwArCzZ4XI",
             map_center:         [39.833333, -98.583333],
+            locationColumn:     "Location",
             locationScope:      "usa"
           });
 
