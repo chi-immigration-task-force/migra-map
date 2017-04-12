@@ -56,7 +56,7 @@
         <div class='col-sm-4 col-xs-12'>
           <div class='well'>
             <h4>
-              Address <small>(<a id='find_me' href='#'>find me</a>)</small>
+              Address
             </h4>
             <p>
               <input class='form-control' id='search_address' placeholder='Enter an address or an intersection' type='text' />
@@ -213,13 +213,9 @@
             myMap.doSearch();
           });
 
-          $('#search').click(function(){
+          $('#search').click(function(e){
+            e.preventDefault();
             myMap.doSearch();
-          });
-
-          $('#find_me').click(function(){
-            myMap.findMe();
-            return false;
           });
 
           $('#reset').click(function(){
