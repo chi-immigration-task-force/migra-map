@@ -1,16 +1,11 @@
 {
 	"@metadata": {
-		"authors": [
-			"Alice",
-			"David",
-			"Santhosh"
-		],
 		"last-updated": "2012-09-21",
 		"locale": "en",
 		"message-documentation": "qqq",
 		"AnotherMetadata": "AnotherMedatadataValue"
 	},
-	"migra-map-title": "Migra Map",
+	"migra-map-title": "MigraMap 2.0 | Map",
 	"migra-map-sub-title": "Ice Raids Map with jquery.i18n",
 	"migra-map-header-introduction": "Introduction",
 	"migra-map-about": "About this application",
