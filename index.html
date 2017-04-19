@@ -56,7 +56,7 @@
         <div class='col-sm-4 col-xs-12'>
           <div class='well'>
             <h4>
-              Address <small>(<a id='find_me' href='#'>find me</a>)</small>
+              Address
             </h4>
             <p>
               <input class='form-control' id='search_address' placeholder='Enter an address or an intersection' type='text' />
@@ -65,10 +65,10 @@
               <label>
                 within
                 <select id='search_radius'>
-                  <option value='400'>2 blocks</option>
-                  <option value='805'>1/2 mile</option>
-                  <option value='1610'>1 mile</option>
-                  <option value='3220'>2 miles</option>
+                  <option value='8050'>5 miles</option>
+                  <option value='16100'>10 miles</option>
+                  <option value='32200'>20 miles</option>
+                  <option value='80500'>50 miles</option>
                 </select>
               </label>
             </p>
@@ -139,6 +139,10 @@
             </a>
           </div>
           <div class='alert alert-info' id='result_box' ><strong id='result_count'></strong></div>
+        <h5>
+        Search Raid Description
+        </h5>
+        <input class='form-control' id='text_search' placeholder="Search Raid Description" type='text' />
         </div>
         <div class='col-sm-8 col-xs-12'>
           <noscript>
@@ -236,13 +240,9 @@
             myMap.doSearch();
           });
 
-          $('#search').click(function(){
+          $('#search').click(function(e){
+            e.preventDefault();
             myMap.doSearch();
-          });
-
-          $('#find_me').click(function(){
-            myMap.findMe();
-            return false;
           });
 
           $('#reset').click(function(){
