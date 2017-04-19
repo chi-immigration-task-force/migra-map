@@ -18,7 +18,7 @@
         // name of the location column in your Fusion Table.
         // NOTE: if your location column name has spaces in it, surround it with single quotes
         // example: locationColumn:     "'my location'",
-        //this.locationColumn = options.locationColumn || "location";
+        this.locationColumn = options.locationColumn || "Location";
 
         // appends to all address searches if not present
         this.locationScope = options.locationScope || "";
@@ -187,15 +187,24 @@
 						self.whereClause += " AND Detentions='-1'"
 				}
 
-                //Description Search 
-                var text_search = $("#text_search").val().replace("'", "\\'");
-                if (text_search != ''){
-                    self.whereClause += " AND 'Description' contains ignoring case '" + text_search + "'";
-                }
+				if ( $("#rbType4").is(':checked')) {
+						self.whereClause += " AND 'Location Type'='Home'"
+				}
+				if ( $("#rbType5").is(':checked')) {
+						self.whereClause += " AND 'Location Type'='Workplace'"
+				}
+				if ( $("#rbType6").is(':checked')) {
+						self.whereClause += " AND 'Location Type'='Public place'"
+				}
 
-                //TODO: Location Type Search
+        //Description Search 
+        var text_search = $("#text_search").val().replace("'", "\\'");
+        if (text_search != ''){
+             self.whereClause += " AND 'Description' contains ignoring case '" + text_search + "'";
+        }
 
-                //TODO: Number of Detainees Radio Buttons
+        //TODO: Number of Detainees Radio Buttons
+
         //-----end of custom filters-----
 
         self.getgeoCondition(address, function (geoCondition) {
