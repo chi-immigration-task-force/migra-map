@@ -58,21 +58,20 @@
             <h4>
               Address
             </h4>
-            <p>
-              <input class='form-control' id='search_address' placeholder='Enter an address or an intersection' type='text' />
-            </p>
-            <p>
-              <label>
-                within
-                <select id='search_radius'>
-                  <option value='8050'>5 miles</option>
+            <div class='filters-address'>
+              <input class='filters-addressField form-control' id='search_address' placeholder='Enter an address or an intersection' type='text' />
+              <div class='filters-addressWithin'>
+                <label for='search_radius'>
+                  within
+                </label>
+                <select id='search_radius' name='search_radius'>
+                  <option value='8050' selected='selected'>5 miles</option>
                   <option value='16100'>10 miles</option>
                   <option value='32200'>20 miles</option>
                   <option value='80500'>50 miles</option>
                 </select>
-              </label>
-            </p>
-            <br />
+              </div>
+            </div>
             <h4>
               Date
             </h4>
@@ -103,32 +102,40 @@
                 </label>
               </li>
             </ul>
-            <h4>
-              Location Types
-            </h4>
-            <ul class='inputs-list unstyled'>
-              <li>
-                <label class='radio inline'>
-                  <input type='radio' name='types' id='rbType4' />
-                  <span></span>
-                  Home
-                </label>
-              </li>
-              <li>
-                <label class='radio inline'>
-                  <input type='radio' name='types' id='rbType5' />
-                  <span></span>
-                  Workplace
-                </label>
-              </li>
-              <li>
-                <label class='radio inline'>
-                  <input type='radio' name='types' id='rbType6' />
-                  <span></span>
-                  Public Place
-                </label>
-              </li>
-            </ul>
+            <div class='filters-advanced'>
+              <div class='filters-advancedTitle'>Advanced Search</div>
+              <h4>
+                Location Types
+              </h4>
+              <ul class='inputs-list unstyled'>
+                <li>
+                  <label class='radio inline'>
+                    <input type='radio' name='types' id='rbType4' />
+                    <span></span>
+                    Home
+                  </label>
+                </li>
+                <li>
+                  <label class='radio inline'>
+                    <input type='radio' name='types' id='rbType5' />
+                    <span></span>
+                    Workplace
+                  </label>
+                </li>
+                <li>
+                  <label class='radio inline'>
+                    <input type='radio' name='types' id='rbType6' />
+                    <span></span>
+                    Public Place
+                  </label>
+                </li>
+              </ul>
+              <h4>
+                Search Raid Description
+              </h4>
+              <input class='form-control' style="margin-bottom:10px;" id='text_search' placeholder="Search Raid Description" type='text' />
+            </div>
+            <button class='toggle-advanced btn btn-default' type='button'>Toggle Advanced Search</button>
             <a class='btn btn-primary' id='search' href='#'>
               <i class='glyphicon glyphicon-search'></i>
               Search
@@ -139,10 +146,6 @@
             </a>
           </div>
           <div class='alert alert-info' id='result_box' ><strong id='result_count'></strong></div>
-        <h5>
-        Search Raid Description
-        </h5>
-        <input class='form-control' id='text_search' placeholder="Search Raid Description" type='text' />
         </div>
         <div class='col-sm-8 col-xs-12'>
           <noscript>
@@ -227,6 +230,9 @@
               myMap.doSearch();
            });
 
+          $('.toggle-advanced').click(function() {
+            $('.filters-advanced').toggle(200);
+          });
 
           $(':checkbox').click(function(){
             myMap.doSearch();
