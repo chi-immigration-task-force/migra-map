@@ -54,3 +54,34 @@ canvas {-ms-touch-action: double-tap-zoom;}
     padding: 0 10px;
     margin: 0;
 }
+
+/* Begin filters css */
+.filters-address {
+  align-items:center;
+  display: flex;
+}
+.filters-addressField {
+  flex: 1 0 0%;
+}
+.filters-addressWithin {
+  flex: 0 0 auto;
+  margin-left:3px;
+}
+
+.filters-advanced {
+  background-color:rgba(255, 255, 255, 0.8);
+  border-radius:3px;
+  margin-bottom:10px;
+  padding:10px;
+}
+
+.filters-advancedTitle {
+  text-align:center;
+}
+
+.toggle-advanced {
+  margin-bottom:10px;
+  text-align:center;
+  width:100%;
+}
+/* End filters css */
