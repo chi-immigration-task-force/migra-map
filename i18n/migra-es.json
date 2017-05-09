@@ -1,20 +1,13 @@
-
-	"@metadata": {
-		"authors": [
-			"Alice",
-			"David",
-			"Santhosh"
-		],
-		"last-updated": "2012-09-21",
-		"locale": "en",
-		"message-documentation": "qqq",
-		"AnotherMetadata": "AnotherMedatadataValue"
+{
+	"map-title": "MigraMap 2.0 | Mapa",
+	"about-title": "MigraMap 2.0 | Sobre Nosotros",
+	"nav": {
+		"map": "Mapa",
+		"about": "Sobre Nosotros",
+		"raid": "Reporta una Redada"
 	},
-	"migra-map-title": "Migra Map",
-	"migra-map-sub-title": "Redadas del Ice con with jquery.i18n",
-	"migra-map-header-introduction": "Introduccion",
-	"migra-map-about": "Acerca de esta aplicacion",
-	"migra-map-footer": "Pie de Pagina",
-	"migra-map-select-lang": "Selecciona tu idioma"
-
+	"lang": {
+		"title": "Selecciona un idioma",
+		"text": "Espa\u00f1ol \u25BC"
+	}
 }
