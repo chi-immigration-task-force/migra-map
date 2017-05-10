@@ -186,6 +186,11 @@
 				if ( $("#rbType3").is(':checked')) {
 						self.whereClause += " AND Detentions='-1'"
 				}
+        
+        if ( $("#detaineeNumInput") != '') {
+            console.log("detaineeNumInput input is not empty\n")
+            self.whereClause += " AND Detentions>=" + $("detaineeNumInput").val();
+        }
 
 				if ( $("#rbType4").is(':checked')) {
 						self.whereClause += " AND 'Location Type'='Home'"
@@ -197,7 +202,7 @@
 						self.whereClause += " AND 'Location Type'='Public place'"
 				}
 
-        //Description Search 
+        //Description Search
         var text_search = $("#text_search").val().replace("'", "\\'");
         if (text_search != ''){
              self.whereClause += " AND 'Description' contains ignoring case '" + text_search + "'";
