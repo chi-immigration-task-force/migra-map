@@ -1,0 +1,14 @@
+{
+	"map-title": "MigraMap 2.0 | Mapa",
+	"about-title": "MigraMap 2.0 | Sobre Nosotros",
+	"raid-title": "MigraMap 2.0 | Reporta una Redada",
+	"nav": {
+		"map": "Mapa",
+		"about": "Sobre Nosotros",
+		"raid": "Reporta una Redada"
+	},
+	"lang": {
+		"title": "Selecciona un idioma",
+		"text": "Espa\u00f1ol \u25BC"
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"map-title": "MigraMap 2.0 | Map",
+	"about-title": "MigraMap 2.0 | About",
+	"raid-title": "MigraMap 2.0 | Report a Raid",
+	"nav": {
+		"map": "Map",
+		"about": "About",
+		"raid": "Report a Raid"
+	},
+	"lang": {
+		"title": "Choose a language",
+		"text": "English \u25BC"
+	}
+}

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html>
   <head>
-    <title>MigraMap 2.0 | Map</title>
+    <title data-i18n="map-title">MigraMap 2.0 | Map</title>
     <meta charset='utf-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content='' name='description' />
     <meta content='' name='author' />
     <!-- Styles -->
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-    <link rel="stylesheet" href="css/custom.css"/>
+    <link type="text/css" rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css"/>
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script type="text/javascript" src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -29,9 +29,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html" title="Map">Map</a></li>  <!--TBD: link to /en/index.html-->
-            <li><a href="about.html" title="About MigraMap">About</a></li>  <!--TBD: link to /en/about.html-->
-            <li><a href="raid.html" title="Report a Raid">Report a Raid</a></li>  <!--TBD: link to /en/submit.html-->
+            <li class="active"><a href="index.html" title="Map" data-i18n="[title]nav.map;nav.map">Map</a></li>
+            <li><a href="about.html" title="About MigraMap" data-i18n="[title]nav.about;nav.about">About</a></li>
+            <li><a href="raid.html" title="Report a Raid" data-i18n="[title]nav.raid;nav.raid">Report a Raid</a></li>
           </ul>
           <div class="nav navbar-nav">
               <a href='http://www.latinorebels.com/' target="_blank" title="Latino Rebels home">
@@ -40,10 +40,14 @@
           </div>
           <ul class="nav navbar-nav navbar-right">
             <li class='dropdown'>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Choose a Language">English <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Choose a Language" data-i18n="[title]lang.title;lang.text">English &#9660;</a>
                 <ul class="dropdown-menu">
-                    <li class="active"><a href="#" title="English">English</a></li>   <!--TBD: link to /en/index.html-->
-                    <li><a href="#" title="Espa&ntilde;ol">Espa&ntilde;ol</a></li>  <!--TBD: link to /sp/index.html-->
+                    <li>
+                      <a href="#" title="English" data-i18n="en">English</a>
+                    </li>
+                    <li>
+                      <a href="#" title="Espa&ntilde;ol" data-i18n="es">Espa&ntilde;ol</a>
+                    </li>
                     <!--TBD: other languages? (will need translators/verifiers)-->
                 </ul>
             </li>
@@ -157,35 +161,43 @@
           <div id='map_canvas'></div>
           <!--p class='pull-right'>
             <a href='https://migramap.latinorebels.com/map/' target="_blank">Migra Map 2.0</a> by <a href='http://latinotechies.com/hack/' target="_blank">Latino Techies</a>
-        </p--><!-- Latino Techies doesn't want to take credit for this-->
+        </p--><!-- DON'T add this back! Latino Techies and Gozamos don't want to take credit for developing this -->
         </div>
       </div>
     </div>
 
     <!-- jQuery from CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- jQuery local fallback -->
-    <script>window.jQuery || document.write('<script src="js/jquery-1.12.4.min.js"><\/script>')</script>
+    <script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="js/jquery-1.12.4.min.js"><\/script>')</script>
     <!-- jQuery UI from CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <!-- jQuery Address from CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.min.js"></script>
     <!-- moment.js from CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <!-- bootstrap.js from CDN -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Bootstrap JS local fallback -->
-    <script>if(typeof($.fn.modal) === 'undefined') {document.write('<script src="js/bootstrap.min.js"><\/script>')}</script>
+    <script type="text/javascript">if(typeof($.fn.modal) === 'undefined') {document.write('<script type="text/javascript" src="js/bootstrap.min.js"><\/script>')}</script>
     <!-- Bootstrap CSS local fallback -->
     <div id="bootstrapCssTest" class="hidden"></div>
-    <script>
+    <script type="text/javascript">
       $(function() {
         if ($('#bootstrapCssTest').is(':visible')) {
-          $("head").prepend('<link rel="stylesheet" href="css/bootstrap.min.css">');
+          $("head").prepend('<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">');
         }
       });
     </script>
 
+    <!-- i18next libraries -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/i18next/8.1.0/i18next.min.js" ></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.2.0/jquery-i18next.min.js" ></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/1.0.1/i18nextBrowserLanguageDetector.min.js" ></script>
+    <script type="text/javascript" src="js/i18nextXHRBackend.min.js" ></script>
+    <script type="text/javascript" src="js/i18napp.js"></script>
+
+    <!-- map & filters libraries and initialization -->
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyAVlYrvh7xDuvv6vbY7me9UHgwArCzZ4XI"></script>
     <script type="text/javascript" src="js/maps_lib.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
