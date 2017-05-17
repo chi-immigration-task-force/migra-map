@@ -68,6 +68,29 @@
                           </div>
                       </div>
                       <div class="form-group">
+                          <label class="col-md-4 control-label">Location Type</label>
+                          <div class="col-md-4">
+                              <div class="radio">
+                                  <label for="radios1">
+                                      <input type="radio" name="location-radios1" id="location-radios1" value="1">
+                                      Home
+                                  </label>
+                              </div>
+                              <div class="radio">
+                                  <label for="radios2">
+                                      <input type="radio" name="location-radios2" id="location-radios2" value="0">
+                                      Workplace
+                                  </label>
+                              </div>
+                              <div class="radio">
+                                  <label for="radios3">
+                                      <input type="radio" name="location-radios3" id="location-radios3" value="-1" checked>
+                                      Public Place
+                                  </label>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
                           <label class="col-md-4 control-label" for="datepicker">Date</label>
                           <div class="col-md-4">
                               <input type="text" id="datepicker" name="datepicker" value="1/01/2017" class="form-control input-md" required/>
@@ -171,10 +194,10 @@
             $('input[name="datepicker"]').daterangepicker({
                 singleDatePicker: true,
                 showDropdowns: true,
-                timePicker: true,
+                timePicker: false,
                 timePickerIncrement: 15,
                 locale: {
-                    format: 'MM/DD/YYYY h:mm A'
+                    format: 'MM/DD/YYYY'
                 }
             })
 
