@@ -29,7 +29,7 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="index.html" title="Map" data-i18n="[title]nav.map;nav.map">Map</a></li>
-            <li class="active"><a href="about.html" title="About MigraMap" data-i18n="[title]nav.about;nav.about">About</a></li>
+            <li class="active"><a href="about.html" title="About MigraMap" data-i18n="[title]nav.about;nav.about">About MigraMap</a></li>
             <li><a href="raid.html" title="Report a Raid" data-i18n="[title]nav.raid;nav.raid">Report a Raid</a></li>
           </ul>
           <div class="nav navbar-nav">
@@ -41,7 +41,7 @@
             <li class='dropdown'>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" title="Choose a Language" data-i18n="[title]lang.title;lang.text">English &#9660;</a>
                 <ul class="dropdown-menu">
-                    <li class="active">
+                    <li>
                       <a href="#" title="English" data-i18n="en">English</a>
                     </li>
                     <li>
@@ -54,11 +54,46 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
-    <div class='container-fluid'>
+    <div class='container'>
       <div class='row'>
-        <div class='col-md-12'>
-          <h1>About</h1>
-          <p>This is an upcoming MigraMap 2.0 about page.</p>
+        <div class='jumbotron'>
+          <h1>About MigraMap</h1>
+          <p><a href="https://migramap.latinorebels.com/map/">MigraMap</a> is a mapping tool that allows users to report and view U.S. Immigration and Customs Enforcement (ICE) raids by date and ZIP code. Originally created by <a href="http://www.latinorebels.com/">Latino Rebels</a>, the tool was enhanced by volunteers from <a href"https://chihacknight.org/">civic tech group</a> based in Chicago.</p>
+          <!-- <p>TBD: [Add a sentence here about MigraMap’s purpose - to provide data for community activists, journalists, concerned citizens, etc?]</p> -->
+        </div>
+      </div>
+      <div class='row'>
+        <div class="col-xs-12 col-md-6">
+          <h2>Using MigraMap 2.0</h2>
+          <p class="text-justify">MigraMap 2.0 shows all the results nationwide on a map that you can zoom in by just double clicking on it or using the + and - buttons at the bottom right corner.</p>
+          <p>You can also filter <a href="index.html">MigraMap results</a> by:
+            <ul>
+              <li>Location (address, zip code, city)</li>
+              <li>Date Range</li>
+              <li>Successful Detainment</li>
+              <li>Location Type (home, business or public place)</li>
+              <li>Keywords</li>
+            </ol>
+          </p>
+          <p class="text-justify">By clicking on any dot in the map, you'll get more details on the reported raid itself, such as the date in which occurred, specific zip code, location type and a general description what did happen during the raid.</p>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <img class="img-responsive" src="images/migramap_screen.png" />
+        </div>
+      </div>
+      <div class='row'>
+        <div class="col-xs-12 col-md-6">
+          <h2>Data collection</h2>
+          <p class="text-justify">The majority of MigraMap data comes from reputable news coverage, with the rest coming from ICE raid reports submitted by MigraMap users. Latino Rebels fact-checks the reports to ensure the accuracy and reliability of the information provided. However, the results provided in this reporting tool are “as is.”</p>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <img class="img-responsive" src="images/raid_screen.png" />
+        </div>
+      </div>
+      <div class='row'>
+        <div class="col-xs-12 col-md-6">
+          <h2>Technical info</h2>
+          <p class="text-justify">To learn more about the tech behind MigraMap, check out our <a href="https://github.com/chi-immigration-task-force/migra-map">GitHub repository.</a></p>
         </div>
       </div>
     </div>

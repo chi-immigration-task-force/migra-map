@@ -1,10 +1,10 @@
 {
 	"map-title": "MigraMap 2.0 | Mapa",
-	"about-title": "MigraMap 2.0 | Sobre Nosotros",
+	"about-title": "MigraMap 2.0 | Sobre MigraMap",
 	"raid-title": "MigraMap 2.0 | Reporta una Redada",
 	"nav": {
 		"map": "Mapa",
-		"about": "Sobre Nosotros",
+		"about": "Sobre MigraMap",
 		"raid": "Reporta una Redada"
 	},
 	"lang": {
